@@ -12,6 +12,8 @@ const ProfileInfo = () => {
     </div>
         <div className={ classes.descriptionBlock}>
         ava + description
+            <div className={classes.animation}>
+            </div>
     </div>
         </div>
 )

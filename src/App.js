@@ -12,7 +12,7 @@ const App = (props) => {
 
 
     return (
-        <BrowserRouter>
+<browseRouter>
             <div className='app-wrapper'>
                 <Header/>
                 <Navbar/>
@@ -24,10 +24,14 @@ const App = (props) => {
                                state={props.state.dialogsPage}/>}/>
                     <Route path='/profile'
                            render={() => <Profile
-                               state={props.state.profilePage}/>}/>
+                               profilePage ={props.state.profilePage}
+                               addPost={props.addPost}  />}/>
                 </div>
+
             </div>
-        </BrowserRouter>)
+</browseRouter>
+
+        )
 }
 
 export default App;

@@ -1,37 +1,38 @@
 import React from 'react';
 import classes from './MyPosts.module.css';
 import Post from './Post/Post';
+import state, {addPost,} from "../../redux/state";
 
 
 const MyPosts = (props) => {
- /*   let dialogs = [
-        {id: 1, name: 'Sasha'},
-        {id: 2, name: 'Viktor'},
-        {id: 3, name: 'Olimjon'},
-        {id: 4, name: 'Tanya'},
-        {id: 5, name: 'Dilsuz'},
-        {id: 6, name: 'Nastya'}
-
-    ]*/
-    let postData = [
-        {id: 1, message: 'Hello how are you doing', likesCount: 15},
-        {id: 2, message: 'Share our network', likesCount: 27}
-    ]
-    let postsElement = postData.map(postData => <Post message={postData.message} likeCount={postData.likesCount}/>);
 
 
+    let newPostElement = React.createRef();
+
+
+    let onPostChange = () => {
+    }
+    let addPost = () => {
+        let text = newPostElement.current.value;
+
+        props.addPost(text);
+        newPostElement.current.value = ""
+    }
+
+    //let postsElement = postData.map(postData => <Post message={postData.message} likeCount={postData.likesCount}/>);
     return (
         <div className={classes.postsBlock}>
-            <h4> My Posts</h4>
+            <h3> My Posts</h3>
             <div>
                 <div>
-                    <textarea> </textarea>
+                    <textarea onChange={onPostChange} ref={newPostElement}
+                              value={props.newPostText}/>
                 </div>
                 <div>
-                    <button> Share</button>
-                    <button>Reset</button>
+                    <button onClick={addPost}> add post</button>
                     <div>
-                        {postsElement}
+                        {state.profilePage.posts.map(item => <Post message={item.message}
+                                                                   likeCount={item.likesCount}/>).reverse()}
 
                     </div>
                 </div>
